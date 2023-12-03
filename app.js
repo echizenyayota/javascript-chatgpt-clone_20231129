@@ -7,6 +7,11 @@ const inputElement = document.querySelector('input');
 const historyElement = document.querySelector('.history');
 const buttonElement = document.querySelector('button');
 
+function changeInput(value) {
+  const inputElement = document.querySelector('input');
+  inputElement.value = value;
+}
+
 async function getMessage() {
   console.log('clicked');
   const options = {
@@ -29,7 +34,8 @@ async function getMessage() {
     outputElement.textContent = data.choices[0].message.content;
     if(data.choices[0].message.content) {
       const pElement = document.createElement('p');
-      pElement.textContent = inputElement.value
+      pElement.textContent = inputElement.value;
+      pElement.addEventListener('click', () => changeInput(pElement.textContent));
       historyElement.append(pElement);
     }
   } catch(error) {
