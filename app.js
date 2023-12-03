@@ -2,6 +2,7 @@
 const API_KEY = OPENAI_API_KEYNUMBER;
 
 const submitButton = document.querySelector('#submit');
+const outputElement = document.querySelector('#output');
 
 async function getMessage() {
   console.log('clicked');
@@ -22,6 +23,7 @@ async function getMessage() {
     const response = await fetch('https://api.openai.com/v1/chat/completions', options);
     const data = await response.json();
     console.log(data);
+    outputElement.textContent = data.choices[0].message.content;
   } catch(error) {
     console.log(error);
   }
