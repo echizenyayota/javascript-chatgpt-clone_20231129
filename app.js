@@ -5,6 +5,7 @@ const submitButton = document.querySelector('#submit');
 const outputElement = document.querySelector('#output');
 const inputElement = document.querySelector('input');
 const historyElement = document.querySelector('.history');
+const buttonElement = document.querySelector('button');
 
 async function getMessage() {
   console.log('clicked');
@@ -37,3 +38,9 @@ async function getMessage() {
 }
 
 submitButton.addEventListener('click', getMessage);
+
+function clearInput() {
+  inputElement.value = "";
+}
+
+buttonElement.addEventListener('click', clearInput);
