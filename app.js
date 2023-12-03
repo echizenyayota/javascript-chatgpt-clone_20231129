@@ -3,6 +3,8 @@ const API_KEY = OPENAI_API_KEYNUMBER;
 
 const submitButton = document.querySelector('#submit');
 const outputElement = document.querySelector('#output');
+const inputElement = document.querySelector('input');
+const historyElement = document.querySelector('.history');
 
 async function getMessage() {
   console.log('clicked');
@@ -14,7 +16,7 @@ async function getMessage() {
     },
     body: JSON.stringify({
       model: "gpt-3.5-turbo",
-      messages: [{role: "user",content: "Hello! How are you?"}],
+      messages: [{role: "user",content: inputElement.value}],
       max_tokens: 100,
     })
   };
@@ -24,6 +26,11 @@ async function getMessage() {
     const data = await response.json();
     console.log(data);
     outputElement.textContent = data.choices[0].message.content;
+    if(data.choices[0].message.content) {
+      const pElement = document.createElement('p');
+      pElement.textContent = inputElement.value
+      historyElement.append(pElement);
+    }
   } catch(error) {
     console.log(error);
   }
